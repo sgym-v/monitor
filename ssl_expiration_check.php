@@ -24,6 +24,3 @@ function ssl_expiration_check($domain_name)
     }
 }
 
-$domain = 'sgym.online';
-$date = ssl_expiration_check($domain);
-echo "https://" . $domain . ":SSL証明書の有効期限は【" . $date ."】です";
