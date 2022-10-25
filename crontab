@@ -1,0 +1,4 @@
+CHECK_DIR=/xxx/xxx
+0 8,14,21 * * * cd $CHECK_DIR; php disk_check.php {mount} {server};
+0 1 * * * cd $CHECK_DIR; php cert_check.php {domain};
+*/8 * * * * cd $CHECK_DIR; php access_check.php {url};
