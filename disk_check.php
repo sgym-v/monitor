@@ -28,7 +28,7 @@ foreach ($result as $key => $value) {
 if($used_rate >= LIMIT_DISK_USED_RATE)
 {
     $level = "warn";
-    $slack_message = "<".SLACK_MEMBER_ID."> 【警告】ディスク使用率が".LIMIT_DISK_USED_RATE."%を超えています。\n
+    $slack_message = SLACK_MEMBER_ID . "【警告】ディスク使用率が".LIMIT_DISK_USED_RATE."%を超えています。\n
     サーバー名：" . $server ."\n
     パス：" . $mount ."\n
     容量：" . $size ."\n

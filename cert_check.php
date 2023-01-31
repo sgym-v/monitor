@@ -35,7 +35,7 @@ if (strpos($parsed['subject']['CN'], $domain) !== false)
     if($day->days <= 30)
     {
         $level = "warn";
-        $slack_message = "<".SLACK_MEMBER_ID."> 【警告】証明書の有効期限が1カ月を切っています。\n
+        $slack_message = SLACK_MEMBER_ID." 【警告】証明書の有効期限が1カ月を切っています。\n
         ドメイン名：" . strval($domain) ."\n
         有効期限日：" . $limit_date->format('Y年m月d日') ."\n
         残り日数：" . $day->days . "日";
@@ -52,7 +52,7 @@ if (strpos($parsed['subject']['CN'], $domain) !== false)
 else
 {
     $level = "warn";
-    $slack_message = "<".SLACK_MEMBER_ID."> 【警告】証明書の取得に失敗しました。\n
+    $slack_message = SLACK_MEMBER_ID." 【警告】証明書の取得に失敗しました。\n
     ドメイン名：" . $domain;
 }
 send_slack($level, $slack_message);

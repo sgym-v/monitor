@@ -23,7 +23,7 @@ switch ($status_code) {
         break;
     default:
         $level = "warn";
-        $slack_message = "<".SLACK_MEMBER_ID."> 【緊急】Webページにアクセスできません。\n
+        $slack_message = SLACK_MEMBER_ID." 【緊急】Webページにアクセスできません。\n
         URL：" . $url ."\n
         ステータスコード：" . $status_code;
         break;
