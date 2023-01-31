@@ -4,8 +4,8 @@
 # 使用方法：                         #
 # $ php cert_check.php [ドメイン名]  #
 #************************************#
-require_once "config.php";
-require_once "functions.php";
+require_once 'config.php';
+require_once 'functions.php';
 
 #ドメイン
 $domain = $argv[1];
@@ -34,25 +34,25 @@ if (strpos($parsed['subject']['CN'], $domain) !== false)
     $day = $current_date->diff($limit_date);
     if($day->days <= 30)
     {
-        $level = "warn";
-        $slack_message = SLACK_MEMBER_ID." 【警告】証明書の有効期限が1カ月を切っています。\n
-        ドメイン名：" . strval($domain) ."\n
-        有効期限日：" . $limit_date->format('Y年m月d日') ."\n
-        残り日数：" . $day->days . "日";
+        $level = 'warn';
+        $message = SLACK_MEMBER_ID.' 【警告】証明書の有効期限が1カ月を切っています。\n
+        ドメイン名：' . strval($domain) .'\n
+        有効期限日：' . $limit_date->format('Y年m月d日') .'\n
+        残り日数：' . $day->days . '日';
     }
     else
     {
-        $level = "debug";
-        $slack_message = $domain . "　証明書チェック\n
-        ドメイン名：" . $domain ."\n
-        有効期限日：" . $limit_date->format('Y年m月d日') ."\n
-        残り日数：" . $day->days . "日";
+        $level = 'debug';
+        $message = $domain . '　証明書チェック\n
+        ドメイン名：' . $domain .'\n
+        有効期限日：' . $limit_date->format('Y年m月d日') .'\n
+        残り日数：' . $day->days . '日';
     }
 }
 else
 {
-    $level = "warn";
-    $slack_message = SLACK_MEMBER_ID." 【警告】証明書の取得に失敗しました。\n
-    ドメイン名：" . $domain;
+    $level = 'warn';
+    $message = SLACK_MEMBER_ID.' 【警告】証明書の取得に失敗しました。\n
+    ドメイン名：' . $domain;
 }
-send_slack($level, $slack_message);
+send($level, $message);

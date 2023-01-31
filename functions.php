@@ -37,3 +37,53 @@ function send_slack($level, $message)
     curl_exec($ch);
     curl_close($ch);
 }
+
+function send_mail($level, $message)
+{
+    $to = MAIL_TO;
+    if($level == "warn")
+    {
+        $subject = MAIL_WARN_SUBJECT;
+    }
+    else if($level == "debug")
+    {
+        $subject = MAIL_DEBUG_SUBJECT;
+    }
+    $additional_headers = "From: ".MAIL_FROM."\r\nReply-To: ".MAIL_FROM."\r\n";
+    mb_language("Japanese");
+    mb_internal_encoding("UTF-8");
+    mb_send_mail($to, $subject, $message, $additional_headers);
+}
+
+function send($level, $message)
+{
+    $options = SEND_OPTIONS;
+    if($level == 'warn')
+    {
+        foreach($options as $option)
+        {
+            if($option == 'mail_warn')
+            {
+                send_mail($level, $message);
+            }
+            elseif($option == 'slack_warn')
+            {
+                send_slack($level, $message);
+            }
+        }
+    }
+    elseif($level == 'debug')
+    {
+        foreach($options as $option)
+        {
+            if($option == 'mail_debug')
+            {
+                send_mail($level, $message);
+            }
+            elseif($option == 'slack_debug')
+            {
+                send_slack($level, $message);
+            }
+        }
+    }
+}
