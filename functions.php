@@ -57,16 +57,16 @@ function send_mail($level, $message)
 
 function send($level, $message)
 {
-    $options = SEND_OPTIONS;
+    $methods = SEND_METHODS;
     if($level == 'warn')
     {
-        foreach($options as $option)
+        foreach($methods as $method)
         {
-            if($option == 'mail_warn')
+            if($method == 'mail_warn')
             {
                 send_mail($level, $message);
             }
-            elseif($option == 'slack_warn')
+            elseif($method == 'slack_warn')
             {
                 send_slack($level, $message);
             }
@@ -74,13 +74,13 @@ function send($level, $message)
     }
     elseif($level == 'debug')
     {
-        foreach($options as $option)
+        foreach($methods as $method)
         {
-            if($option == 'mail_debug')
+            if($method == 'mail_debug')
             {
                 send_mail($level, $message);
             }
-            elseif($option == 'slack_debug')
+            elseif($method == 'slack_debug')
             {
                 send_slack($level, $message);
             }
