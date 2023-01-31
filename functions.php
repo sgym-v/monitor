@@ -2,18 +2,18 @@
 
 function send_slack($level, $message)
 {
-    $url = SLACK_NOTICE_URL;
+    $url = SLACK_URL;
     if($level == "warn")
     {
-        $channel = "#警告";
+        $channel = SLACK_WARN_CHANNEL;
     }
     else if($level == "debug")
     {
-        $channel = "#定期実行";
+        $channel = SLACK_DEBUG_CHANNEL;
     }
     $message = [
         "channel" => $channel,
-        "username" => "すぎやまbot",
+        "username" => SLACK_BOT_NAME,
         "text" => "",
         "attachments" => [
             "blocks" => [
