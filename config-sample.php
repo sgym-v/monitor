@@ -1,10 +1,10 @@
 <?php
 #全般的な設定
 #====================================================
-#送信方法
-define('SEND_METHODS', ['mail_warn', 'main_debug', 'slack_warn', 'slack_debug']);
 #ディスク使用率の上限
 define('LIMIT_DISK_USED_RATE', 80);
+#送信方法
+define('SEND_METHODS', ['mail_warn', 'main_debug', 'slack_warn', 'slack_debug']);
 
 #Slackの設定
 #====================================================
